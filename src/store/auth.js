@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+// reducer
 const auth = (state = { }, action)=> {
   if(action.type === 'SET_AUTH'){
     return action.auth;
@@ -6,11 +8,12 @@ const auth = (state = { }, action)=> {
   return state;
 };
 
+
+// Thunks
 export const logout = ()=> {
   window.localStorage.removeItem('token');
   return { type: 'SET_AUTH', auth: {} };
 };
-
 
 export const loginWithToken = ()=> {
   return async(dispatch)=> {
@@ -38,7 +41,6 @@ export const updateAuth = (auth)=> {
   };
 };
 
-
 export const attemptLogin = (credentials)=> {
   return async(dispatch)=> {
     const response = await axios.post('/api/auth', credentials);
@@ -54,5 +56,9 @@ export const register = (credentials)=> {
     dispatch(loginWithToken());
   };
 };
+
+
+
+
 
 export default auth;

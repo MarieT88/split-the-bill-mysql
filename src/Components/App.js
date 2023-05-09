@@ -1,21 +1,26 @@
 import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
-import { useSelector, useDispatch } from 'react-redux';
+import UserProfile from "./UserProfile";
+import UserBills from "./UserBills";
+import UserEvents from "./UserEvents";
 import { loginWithToken } from '../store';
-import { Link, Routes, Route } from 'react-router-dom';
 
 
 const App = ()=> {
+  
   const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
+
   useEffect(()=> {
     dispatch(loginWithToken());
   }, []);
 
   return (
     <div>
-      <h1>FS App Template</h1>
+      <h1>Split the Bill</h1>
       {
         auth.id ? <Home /> : <Login />
       }
@@ -24,12 +29,27 @@ const App = ()=> {
           <div>
             <nav>
               <Link to='/'>Home</Link>
+              <Link to="/profile">Profile</Link>
+              <Link to="/bills">Bills</Link>
+              <Link to="/events">Events</Link>
             </nav>
+          </div>
+        )
+      }
+      {
+        !!auth.id && (
+          <div>
+            <Routes>
+             <Route path="/profile" element={<UserProfile />} />
+             <Route path="/bills" element={<UserBills />} />
+             <Route path="/events" element={<UserEvents />} />
+            </Routes>
           </div>
         )
       }
     </div>
   );
 };
+
 
 export default App;

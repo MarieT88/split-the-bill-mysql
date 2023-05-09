@@ -1,9 +1,10 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, TEXT, BOOLEAN } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, VIRTUAL } = conn.Sequelize;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT = process.env.JWT;
 
+//User model
 
 const User = conn.define('user', {
   id: {
@@ -19,11 +20,38 @@ const User = conn.define('user', {
     },
     unique: true
   },
+  firstName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  lastName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
   password: {
     type: STRING,
     allowNull: false,
     validate: {
       notEmpty: true
+    }
+  },
+  email: {
+    type: STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: {
+        msg: 'Email address required.'
+      },
+      isEmail: {
+        msg: 'Must be a valid email address.'
+      }
     }
   },
   isAdmin: {
@@ -44,74 +72,15 @@ const User = conn.define('user', {
       }
       return `${prefix}${data}`;
     }
+  },
+  name: {
+    type: VIRTUAL,
+    get() {
+      return `${this.firstName} ${this.lastName}`;
+    }
   }
 });
 
-User.prototype.createOrder = async function(){
-  const cart = await this.getCart();
-  cart.isCart = false;
-  await cart.save();
-  return cart;
-
-}
-
-User.prototype.getCart = async function(){
-  let cart = await conn.models.order.findOne({
-    where: {
-      userId: this.id,
-      isCart: true
-    }
-  });
-  if(!cart){
-    cart = await conn.models.order.create({
-      userId: this.id
-    });
-  }
-  cart = await conn.models.order.findByPk(
-    cart.id,
-    {
-      include: [
-        {
-          model: conn.models.lineItem,
-          include: [
-            conn.models.product
-          ]
-        }
-      ]
-    }
-  );
-  return cart;
-}
-
-User.prototype.addToCart = async function({ product, quantity}){
-  const cart = await this.getCart();
-  let lineItem = cart.lineItems.find( lineItem => {
-    return lineItem.productId === product.id; 
-  });
-  if(lineItem){
-    lineItem.quantity += quantity;
-    await lineItem.save();
-  }
-  else {
-    await conn.models.lineItem.create({ orderId: cart.id, productId: product.id, quantity });
-  }
-  return this.getCart();
-};
-
-User.prototype.removeFromCart = async function({ product, quantityToRemove}){
-  const cart = await this.getCart();
-  const lineItem = cart.lineItems.find( lineItem => {
-    return lineItem.productId === product.id; 
-  });
-  lineItem.quantity = lineItem.quantity - quantityToRemove;
-  if(lineItem.quantity > 0){
-    await lineItem.save();
-  }
-  else {
-    await lineItem.destroy();
-  }
-  return this.getCart();
-};
 
 
 User.addHook('beforeSave', async(user)=> {
@@ -134,7 +103,7 @@ User.findByToken = async function(token){
     error.status = 401;
     throw error;
   }
-}
+};
 
 User.prototype.generateToken = function(){
   return jwt.sign({ id: this.id }, JWT);
@@ -152,7 +121,48 @@ User.authenticate = async function({ username, password }){
   const error = new Error('bad credentials');
   error.status = 401;
   throw error;
-}
+};
+
+/*
+User.associate = function(models) {
+  User.belongsToMany(models.Event, { through: 'UserEvent' });
+  User.belongsToMany(models.Bill, { through: 'UserBill' });
+};
+// bill methods
+
+User.prototype.getBills = async function() {
+  return this.getBill();
+};
+
+User.prototype.addBill = async function(bill) {
+  if (!this.bills.includes(bill)) {
+    await this.addBill(bill);
+  }
+};
+
+// event methods
+
+User.prototype.getEvents = async function() {
+  return this.getEvent();
+};
+
+User.prototype.addEvent = async function(event) {
+  return this.addEvent(event);
+};
+
+*/
+
+User.prototype.createBill = async function (_bill) {
+  let bill = await conn.bill.create({
+    name: _bill.name,
+    amount: _bill.amount,
+    dueDate: _bill.dueDate,
+    note: _bill.note,
+    userId: this.id,
+  });
+  return bill;
+};
+
 
 module.exports = User;
 
