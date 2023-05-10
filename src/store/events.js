@@ -25,8 +25,8 @@ const events = (state = [], action) => {
 
 export const fetchEvents = () => {
   return async (dispatch) => {
-    const response = await axios.get("/api/events");
-    dispatch({ type: "SET_EVENTS", events: response.data });
+    const res = await axios.get("/api/events");
+    dispatch({ type: "SET_EVENTS", events: res.data });
   };
 };
 

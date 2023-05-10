@@ -1,24 +1,24 @@
 const express = require('express');
 const app = express.Router();
-const { Bill } = require('../db');
-// route: /api/bills
+const { User } = require('../db');
+// route: /api/users
 
 module.exports = app;
 
 //fetch
 app.get('/', async(req, res, next)=> {
   try {
-    res.send(await Bill.findAll());
+    res.send(await User.findAll());
   }
   catch(ex){
     next(ex);
   }
 });
 
-//create
+// create
 app.post('/', async(req, res, next) => {
   try{
-    res.status(201).send(await Bill.create(req.body));
+    res.status(201).send(await User.create(req.body));
   }
   catch(ex){
     next(ex);
@@ -28,8 +28,8 @@ app.post('/', async(req, res, next) => {
 //update
 app.put('/:id', async(req, res, next) => {
   try{
-    const bill = await Bill.findByPk(req.params.id);
-    res.send(await bill.update(req.body));
+    const user = await User.findByPk(req.params.id);
+    res.send(await user.update(req.body));
   }
   catch(ex){
     next(ex);
@@ -39,8 +39,8 @@ app.put('/:id', async(req, res, next) => {
 //delete
 app.delete('/:id', async(req, res, next) => {
   try{
-    const bill = await Bill.findByPk(req.params.id);
-    await bill.destroy();
+    const user = await User.findByPk(req.params.id);
+    await user.destroy();
     res.send(204);
   }
   catch(ex){

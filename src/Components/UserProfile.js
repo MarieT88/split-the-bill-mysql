@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {  useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+import UserUpdate from './UserUpdate';
 
 
 const UserProfile = () => {
@@ -12,6 +12,8 @@ const UserProfile = () => {
       <h1> {auth.username}'s Profile</h1>
       <h5> Name: {auth.name} </h5>
       <h5> Email: {auth.email} </h5>
+      <br/>
+      <UserUpdate />
     </div>
   );
 };

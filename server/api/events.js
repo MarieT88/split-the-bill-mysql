@@ -5,8 +5,8 @@ const { Event } = require('../db');
 
 module.exports = app;
 
-
-app.post('/', async(req, res, next)=> {
+//fetch
+app.get('/', async(req, res, next)=> {
   try {
     res.send(await Event.findAll());
   }
@@ -15,19 +15,7 @@ app.post('/', async(req, res, next)=> {
   }
 });
 
-
-app.delete('/:id', async(req, res, next) => {
-  try{
-    const event = await Event.findByPk(req.params.id);
-    await event.destroy();
-    res.send(204);
-  }
-  catch(ex){
-    next(ex);
-  }
-});
-
-
+//create
 app.post('/', async(req, res, next) => {
   try{
     res.status(201).send(await Event.create(req.body));
@@ -37,11 +25,23 @@ app.post('/', async(req, res, next) => {
   }
 });
 
-
+//update
 app.put('/:id', async(req, res, next) => {
   try{
     const event = await Event.findByPk(req.params.id);
     res.send(await event.update(req.body));
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
+//delete
+app.delete('/:id', async(req, res, next) => {
+  try{
+    const event = await Event.findByPk(req.params.id);
+    await event.destroy();
+    res.send(204);
   }
   catch(ex){
     next(ex);

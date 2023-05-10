@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const JWT = process.env.JWT;
 
 //User model
-
 const User = conn.define('user', {
   id: {
     type: UUID,
@@ -54,25 +53,6 @@ const User = conn.define('user', {
       }
     }
   },
-  isAdmin: {
-    type: BOOLEAN,
-    allowNull: false,
-    defaultValue: false
-  },
-  avatar: {
-    type: TEXT,
-    get: function(){
-      const prefix = 'data:image/png;base64,';
-      const data = this.getDataValue('avatar');
-      if(!data){
-        return data;
-      }
-      if(data.startsWith(prefix)){
-        return data;
-      }
-      return `${prefix}${data}`;
-    }
-  },
   name: {
     type: VIRTUAL,
     get() {
@@ -82,13 +62,14 @@ const User = conn.define('user', {
 });
 
 
-
+// hooks 
 User.addHook('beforeSave', async(user)=> {
   if(user.changed('password')){
     user.password = await bcrypt.hash(user.password, 5);
   }
 });
 
+// login, token & authentication methods
 User.findByToken = async function(token){
   try {
     const { id } = jwt.verify(token, process.env.JWT);
@@ -124,12 +105,7 @@ User.authenticate = async function({ username, password }){
 };
 
 /*
-User.associate = function(models) {
-  User.belongsToMany(models.Event, { through: 'UserEvent' });
-  User.belongsToMany(models.Bill, { through: 'UserBill' });
-};
 // bill methods
-
 User.prototype.getBills = async function() {
   return this.getBill();
 };
@@ -138,19 +114,7 @@ User.prototype.addBill = async function(bill) {
   if (!this.bills.includes(bill)) {
     await this.addBill(bill);
   }
-};
-
-// event methods
-
-User.prototype.getEvents = async function() {
-  return this.getEvent();
-};
-
-User.prototype.addEvent = async function(event) {
-  return this.addEvent(event);
-};
-
-*/
+}; */
 
 User.prototype.createBill = async function (_bill) {
   let bill = await conn.bill.create({
@@ -162,6 +126,18 @@ User.prototype.createBill = async function (_bill) {
   });
   return bill;
 };
+
+/*
+// event methods
+User.prototype.getEvents = async function() {
+  return this.getEvent();
+};
+
+User.prototype.addEvent = async function(event) {
+  return this.addEvent(event);
+};
+
+*/
 
 
 module.exports = User;

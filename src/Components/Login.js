@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
+import UserCreate from './UserCreate';
 
 const Login = ()=> {
+  
   const dispatch = useDispatch();
+  
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
@@ -17,26 +20,34 @@ const Login = ()=> {
     ev.preventDefault();
     dispatch(attemptLogin(credentials));
   };
+  
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={ login }>
-        <input
-          placeholder='username'
-          value = { credentials.username }
-          name = 'username'
-          onChange = { onChange }
+      <div>
+        <h2>Login</h2>
+        <form onSubmit={ login }>
+          <input
+            placeholder='username'
+            value = { credentials.username }
+            name = 'username'
+            onChange = { onChange }
+            />
+          <input
+            placeholder='password'
+            name = 'password'
+            value={ credentials.password }
+            onChange = { onChange }
           />
-        <input
-          placeholder='password'
-          name = 'password'
-          value={ credentials.password }
-          onChange = { onChange }
-        />
-        <button>Login</button>
-      </form>
+          <button>Login</button>
+        </form>
+      </div>
+      <div>
+        <br/>
+        <UserCreate />
+      </div>
     </div>
   );
 };
+
 
 export default Login;

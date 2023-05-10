@@ -9,11 +9,9 @@ const Home = ()=> {
   const dispatch = useDispatch();
   
   return (
-      <div>
-        Welcome { auth.username }!!
-        <br/>
-        <button onClick={()=> dispatch(logout())}>Logout</button>
-      </div>
+    <div>
+      Welcome { auth.username }!! <button onClick={()=> dispatch(logout())}>Logout</button>
+    </div>
   );
   
 };
