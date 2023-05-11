@@ -7,6 +7,8 @@ import UserProfile from "./UserProfile";
 import UserBills from "./UserBills";
 import BillCreate from './BillCreate';
 import BillList from "./BillList";
+import QuickSplit from "./QuickSplit";
+import BillSplit from "./BillSplit";
 import { loginWithToken } from '../store';
 
 
@@ -42,6 +44,7 @@ const App = ()=> {
             <nav>
               <Link to="/profile">Profile</Link>
               <Link to="/bills">Bills</Link>
+              <Link to="/quicksplit">Quick Split</Link>
             </nav>
           </div>
         )
@@ -54,6 +57,8 @@ const App = ()=> {
              <Route path="/bills/*" element={<UserBills />} />
              <Route path="/newbill" element={<BillCreate />} />
              <Route path="/mybills" element={<BillList />} />
+             <Route path="/quicksplit" element={<QuickSplit />} />
+             <Route path="/billsplit" element={<BillSplit />} />
             </Routes>
           </div>
         )
