@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express.Router();
-const { Bill } = require('../db');
+const { Bill, BillUser, User } = require('../db');
+const { isLoggedIn } = require('./middleware');
 // route: /api/bills
 
 module.exports = app;
@@ -24,7 +25,22 @@ app.post('/', async(req, res, next) => {
     next(ex);
   }
 });
-
+/*
+app.post('/', isLoggedIn, async (req, res, next) => {
+  try {
+    const { name, amount, dueDate, note } = req.body;
+    console.log(req.body);
+    const userId = req.user.id; 
+    console.log(userId);
+    const bill = await Bill.create({ name, amount, dueDate, note, userId });
+    // create the association between the bill and the current user
+    await BillUser.create({ billId: bill.id, userId: req.user.id });
+    res.status(201).send(bill);
+  } catch (err) {
+    next(err);
+  }
+});
+*/
 //update
 app.put('/:id', async(req, res, next) => {
   try{

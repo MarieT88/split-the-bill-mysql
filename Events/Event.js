@@ -1,4 +1,4 @@
-const conn = require('./conn');
+/* const conn = require('./conn');
 const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, DATEONLY } = conn.Sequelize;
 
 
@@ -20,4 +20,4 @@ const Event = conn.define('event', {
 });
 
 
-module.exports = Event;
+module.exports = Event;*/

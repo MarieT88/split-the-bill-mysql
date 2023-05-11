@@ -1,35 +1,36 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchBills, fetchEvents, fetchUsers } from '../store';
+import { fetchBills, fetchUsers } from '../store';
+import UserBills from './UserBills';
 
-
-const Data = ()=> {
+const BillList = ()=> {
   
-  const { bills, events, auth, users } = useSelector(state => state);
+  const { bills, auth, users } = useSelector(state => state);
   
   const dispatch = useDispatch();
   
   useEffect(() => {
 		dispatch(fetchBills());
-		dispatch(fetchEvents());
 		dispatch(fetchUsers());
 	}, []);
 	
-	//console.log(events);
+	//const user = users.find(user => user.id === auth.id);
+
 	//console.log(bills);
 	//console.log(auth);
 	//console.log(users);
 	
   return (
     <div>
+      <UserBills />
       <div>
         <h5>Bills</h5>
           {
-            bills.map( bill => {
+            bills.filter(bill => bill.userId === auth.id).map( bill => {
               return (
                 <ul key={ bill.id }>
                   <li>
-                    name: { bill.name } |  
+                    bill: { bill.name } |  
                     | amount: { bill.amount} |  
                     | due date: { bill.dueDate } | 
                     | note: { bill.note }
@@ -39,22 +40,15 @@ const Data = ()=> {
             })
           }
       </div>
-      <div>
-        <h5>Events</h5>
-        {
-          events.map( event => {
-            return (
-              <ul key={ event.id }>
-               <li>
-                  name: { event.name } | 
-                  | date: { event.date } | 
-                  | note: { event.note }
-                </li>
-              </ul>
-            );  
-          })
-        }
-      </div>
+
+    </div>
+  );
+};
+
+
+export default BillList;
+
+/* 
       <div>
         <h5>Users</h5>
           {
@@ -70,10 +64,4 @@ const Data = ()=> {
               );  
             })
           }
-      </div>
-    </div>
-  );
-};
-
-
-export default Data;
+      </div> */

@@ -1,4 +1,4 @@
-import axios from "axios";
+/*import axios from "axios";
 
 const events = (state = [], action) => {
   if (action.type === "SET_EVENTS") {
@@ -52,3 +52,4 @@ export const deleteEvent = (event)=> {
 };
 
 export default events;
+*/

@@ -1,18 +1,14 @@
 const conn = require('./conn');
 const User = require('./User');
-const Event = require('./Event');
 const Bill = require('./Bill');
-const { users, bills, events } = require('./Data')
+//const BillUser = require('./BillUser');
+const { users, bills } = require('./Data');
 
 // relationships between the models
-User.belongsToMany(Bill, { through: 'UserBill' });
-Bill.belongsToMany(User, { through: 'UserBill' });
-Bill.belongsTo(Event);
-Event.hasMany(Bill);
-Event.belongsToMany(User, { through: 'UserEvent' });
-User.belongsToMany(Event, { through: 'UserEvent' });
-Event.belongsTo(User, { as: 'organizer' });
-
+//Bill.belongsToMany(User);
+//User.belongsToMany(Bill);
+User.hasMany(Bill);
+Bill.hasMany(User);
 
 
 const syncAndSeed = async()=> {
@@ -21,7 +17,7 @@ const syncAndSeed = async()=> {
   
   //await Promise.all(users.map((user) => User.create(user)));
   await Promise.all(bills.map((bill) => Bill.create(bill)));
-  await Promise.all(events.map((event) => Event.create(event)));
+ 
   
 await Promise.all(users.map(async (user) => {
   const dbUser = await User.create(user);
@@ -38,7 +34,7 @@ await Promise.all(users.map(async (user) => {
 
 module.exports = {
   User,
-  Event,
   Bill,
+  //BillUser,
   syncAndSeed,
 };

@@ -127,17 +127,6 @@ User.prototype.createBill = async function (_bill) {
   return bill;
 };
 
-/*
-// event methods
-User.prototype.getEvents = async function() {
-  return this.getEvent();
-};
-
-User.prototype.addEvent = async function(event) {
-  return this.addEvent(event);
-};
-
-*/
 
 
 module.exports = User;

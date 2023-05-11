@@ -3,18 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../store';
 
 
-const Home = ()=> {
+const Logout = ()=> {
   
   const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
   
   return (
     <div>
-      Welcome { auth.username }!! <button onClick={()=> dispatch(logout())}>Logout</button>
+      <br/>
+      See you soon { auth.username }!! <button onClick={()=> dispatch(logout())}>Logout</button>
     </div>
   );
   
 };
 
 
-export default Home;
+export default Logout;

@@ -9,7 +9,7 @@ const UserProfile = () => {
 
   return (
     <div>
-      <h1> {auth.username}'s Profile</h1>
+      <h2> {auth.username}'s Profile</h2>
       <h5> Name: {auth.name} </h5>
       <h5> Email: {auth.email} </h5>
       <br/>

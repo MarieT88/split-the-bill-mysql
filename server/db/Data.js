@@ -75,7 +75,7 @@ const bills = [
 ];
 
 
-const events = [
+/*const events = [
     {
       name: 'Trip to Spain',
 	  date: '2025-03-05',
@@ -91,12 +91,11 @@ const events = [
 	  date: '2024-04-06',
 	  note: 'Spa Weekend',
 	},
-];
+];*/
 
 
 module.exports = {
     users,
     bills, 
-    events
 };
     
