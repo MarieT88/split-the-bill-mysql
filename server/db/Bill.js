@@ -26,23 +26,5 @@ const Bill = conn.define('bill', {
   },
 });
    
-   
-Bill.createBill = async function({ name, amount, dueDate, note }, userId) {
-  try {
-    const bill = await Bill.create({
-      name,
-      amount,
-      dueDate,
-      note,
-      userId,
-    });
-
-    return bill;
-  } catch (error) {
-    console.error(error);
-    throw new Error('Unable to create bill.');
-  }
-};
-
 
 module.exports = Bill;

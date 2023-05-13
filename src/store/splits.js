@@ -44,29 +44,14 @@ export const createSplit = (split) => {
     const response = await axios.put(`/api/splits/${id}`, split);
     dispatch({ type: "UPDATE_SPLIT", split: response.data });
   };
-};*/
+};/
 
-/*
-export const fetchSplits = (billId) => {
-  return async (dispatch) => {
-    const response = await axios.get(`/api/bills/${billId}/splits`);
-    dispatch({ type: "SET_SPLITS", splits: response.data });
-  };
-};
-
-export const createSplit = (billId, split) => {
-  return async (dispatch) => {
-    const response = await axios.post(`/api/bills/${billId}/splits`, split);
-    dispatch({ type: "CREATE_SPLIT", split: response.data });
-  };
-};
-*/
 export const updateSplit = (billId, splitId, split) => {
   return async (dispatch) => {
     const response = await axios.put(`/api/bills/${billId}/splits/${splitId}`, split);
     dispatch({ type: "UPDATE_SPLIT", split: response.data });
   };
-};
+};*/
 
 
 export default splits;

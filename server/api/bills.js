@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const { Bill, Split } = require('../db');
+const { Bill } = require('../db');
 // route: /api/bills
 
 module.exports = app;
@@ -49,51 +49,3 @@ app.delete('/:id', async(req, res, next) => {
 });
 
 
-/*
-//get split bill
-app.get('/:billId/splits', async (req, res, next) => {
-  try {
-    const splits = await Split.findAll({
-      where: {
-        billId: req.params.billId,
-      },
-    });
-    res.send(splits);
-  } catch (ex) {
-    next(ex);
-  }
-});
-
-//post split bill
-app.post('/:billId/splits', async (req, res, next) => {
-  try {
-    const split = await Split.create({
-      amount: req.body.amount,
-      userId: req.body.userId,
-      billId: req.params.billId,
-    });
-    res.send(split);
-  } catch (ex) {
-    next(ex);
-  }
-});
-*/
-/* update split bill
-app.put('/:billId/splits/:splitId', async (req, res, next) => {
-  try {
-    const { billId, splitId } = req.params;
-    const split = await Split.findOne({
-      where: {
-        id: splitId,
-        billId: billId,
-      },
-    });
-    if (!split) {
-      return res.status(404).send('Split not found');
-    }
-    const updatedSplit = await split.update(req.body);
-    res.send(updatedSplit);
-  } catch (ex) {
-    next(ex);
-  }
-});*/

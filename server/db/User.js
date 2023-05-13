@@ -104,30 +104,6 @@ User.authenticate = async function({ username, password }){
   throw error;
 };
 
-/*
-// bill methods
-User.prototype.getBills = async function() {
-  return this.getBill();
-};
-
-User.prototype.addBill = async function(bill) {
-  if (!this.bills.includes(bill)) {
-    await this.addBill(bill);
-  }
-}; */
-
-User.prototype.createBill = async function (_bill) {
-  let bill = await conn.bill.create({
-    name: _bill.name,
-    amount: _bill.amount,
-    dueDate: _bill.dueDate,
-    note: _bill.note,
-    userId: this.id,
-  });
-  return bill;
-};
-
-
 
 module.exports = User;
 

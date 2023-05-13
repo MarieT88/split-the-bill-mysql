@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const { User, BillUser } = require('../db');
+const { User } = require('../db');
 // route: /api/users
 
 module.exports = app;
@@ -48,17 +48,3 @@ app.delete('/:id', async(req, res, next) => {
   }
 });
 
-//adds users to bills
-app.post('/:billId/users', async (req, res, next) => {
-  try {
-    const { userIds } = req.body;
-    const { billId } = req.params;
-
-    // create a new row in the billuser table for each user ID
-    await Promise.all(userIds.map(userId => BillUser.create({ billId, userId })));
-
-    res.status(201).send('Users added to bill');
-  } catch (err) {
-    next(err);
-  }
-});

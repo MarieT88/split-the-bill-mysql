@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSplit } from '../store';
 import UserBills from './UserBills';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const BillSplit = ()=> {
 
-  const { bills, users, splits } = useSelector( state => state );
+  const { bills, users } = useSelector( state => state );
 
   const dispatch = useDispatch();
   
@@ -25,7 +25,6 @@ const BillSplit = ()=> {
   return (
     <div>
       <UserBills />
-      <hr/>
       <div>
       <form onSubmit={ create }>
       <div>

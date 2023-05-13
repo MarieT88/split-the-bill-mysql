@@ -1,8 +1,8 @@
 import React from 'react';
-import BillList from './BillList';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserBills from './UserBills';
+
 
 const BillDetails = () => {
 
@@ -13,8 +13,6 @@ const BillDetails = () => {
   if(!bill){
     return null;
   }
-
-  
 
   return (
     <div>
