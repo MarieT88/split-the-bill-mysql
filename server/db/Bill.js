@@ -19,7 +19,11 @@ const Bill = conn.define('bill', {
   },
   note: {
     type: TEXT
-  }
+  },
+  	isPaid: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
 });
    
    

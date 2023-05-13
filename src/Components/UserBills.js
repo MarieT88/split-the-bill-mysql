@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const UserBills = () => {
@@ -14,6 +14,7 @@ const UserBills = () => {
         <nav>
           <Link to="/newbill">New Bill</Link>
           <Link to="/mybills">My Bills</Link>
+          <Link to="/splits">Splits List</Link>
           <Link to="/billsplit">Split Bills</Link>
         </nav>
       </div>

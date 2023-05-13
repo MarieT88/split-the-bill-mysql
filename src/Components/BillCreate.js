@@ -25,7 +25,7 @@ const BillCreate = ()=> {
   const create = async(ev) => {
     ev.preventDefault();
     try{
-      await dispatch(createBill({ name, amount, dueDate, note }, auth.id));
+      await dispatch(createBill({ name, amount, dueDate, note }/*, auth.id*/));
       setName('');
       setAmount('');
       setDueDate(null);
@@ -43,8 +43,6 @@ const BillCreate = ()=> {
     }
 
   };  
-
-
 
   return (
     

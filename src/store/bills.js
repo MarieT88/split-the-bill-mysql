@@ -37,19 +37,19 @@ export const updateBill = (bill) => {
   };
 };
 
-/*export const createBill = (bill) => {
+export const createBill = (bill) => {
   return async (dispatch) => {
     const response = await axios.post("/api/bills", bill);
     dispatch({ type: "CREATE_BILL", bill: response.data });
   };
-};*/
+};
 
-export const createBill = (bill, userId) => {
+/*export const createBill = (bill, userId) => {
   return async (dispatch) => {
     const { data } = await axios.post('/api/bills', { ...bill, userId });
     dispatch({ type: 'CREATE_BILL', bill: data });
   };
-};
+};*/
 
 export const deleteBill = (bill)=> {
   return async(dispatch)=> {

@@ -8,8 +8,10 @@ import UserBills from "./UserBills";
 import BillCreate from './BillCreate';
 import BillList from "./BillList";
 import QuickSplit from "./QuickSplit";
-import BillSplit from "./BillSplit";
-import { loginWithToken } from '../store';
+import Split from "./Split";
+import BillDetails from "./BillDetails";
+import BillSplit from'./BillSplit';
+import { loginWithToken, fetchUsers, fetchSplits, fetchBills } from '../store';
 
 
 const App = ()=> {
@@ -25,6 +27,9 @@ const App = ()=> {
   useEffect(()=> {
     if(!prevAuth.current.id && auth.id){
       console.log(`${auth.firstName} is logged in`);
+      dispatch(fetchUsers());
+      dispatch(fetchBills());
+      dispatch(fetchSplits());
     }
     if(prevAuth.current.id && !auth.id){
       console.log('logged out');
@@ -57,8 +62,10 @@ const App = ()=> {
              <Route path="/bills/*" element={<UserBills />} />
              <Route path="/newbill" element={<BillCreate />} />
              <Route path="/mybills" element={<BillList />} />
+             <Route path="/bills/:id" element={<BillDetails />} />
              <Route path="/quicksplit" element={<QuickSplit />} />
-             <Route path="/billsplit" element={<BillSplit />} />
+             <Route path="/splits" element={<Split />} />
+             <Route path="/BillSplit" element={<BillSplit />} />
             </Routes>
           </div>
         )

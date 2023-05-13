@@ -16,7 +16,7 @@ const BillUser = conn.define('bill_user', {
       model: Bill,
       key: 'id'
     },
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE', 
     onUpdate: 'CASCADE'
   },
   userId: {

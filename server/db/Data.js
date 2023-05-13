@@ -1,3 +1,5 @@
+
+
 const users = [
 	{
 	  username: 'Marie',
@@ -13,7 +15,7 @@ const users = [
 		  note: 'Going up to 550 next month',
 		},
 		{
-	  	  name: 'Car',
+	  	name: 'Car',
 		  amount: 250.00,
 		  dueDate: '2023-07-22',
 	    },
@@ -25,7 +27,7 @@ const users = [
 	  ]
 	},
 	{
-      username: 'Vicke',
+    username: 'Vicke',
 	  password: '123',
 	  firstName: 'Victoria',
 	  lastName: 'Tornetto',
@@ -56,23 +58,52 @@ const users = [
 
 
 const bills = [
-   {
-	  name: 'Rent',
-	  amount: 500.00,
-	  dueDate: '2023-07-02',
-	  note: 'Going up to 550 next month',
+   {  
+	    name: 'Rent',
+	    amount: 500.00,
+	    dueDate: '2023-07-02',
+	    note: 'Going up to 550 next month',
     },
     {
-	  name: 'Electric',
-	  amount: 250.00,
-	  dueDate: '2023-07-22',
+	    name: 'Electric',
+	    amount: 250.00,
+	    dueDate: '2023-07-22',
     },
     {
-	  name: 'Water',
- 	  amount: 54.62,
-	  dueDate: '2023-07-13',
+	    name: 'Water',
+ 	    amount: 54.62,
+	    dueDate: '2023-07-13',
     },
-];
+    {
+		  name: 'Boat',
+		  amount: 500.00,
+		  dueDate: '2023-07-02',
+		  note: 'Going up to 550 next month',
+		},
+		{
+	  	name: 'Car',
+		  amount: 250.00,
+		  dueDate: '2023-07-22',
+	    },
+		{
+		  name: 'Phone',
+		  amount: 54.62,
+		  dueDate: '2023-07-13',
+		},
+    {
+      name: 'Girls Vegas Weekend',
+      amount: 3500.00,
+      dueDate: '2023-09-02',
+      note: 'Not including flights',
+    }
+  ];
+  
+  module.exports = {
+    users,
+    bills, 
+}; 
+
+
 
 
 /*const events = [
@@ -94,8 +125,5 @@ const bills = [
 ];*/
 
 
-module.exports = {
-    users,
-    bills, 
-};
+
     
