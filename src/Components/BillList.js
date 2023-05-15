@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import UserBills from './UserBills';
 
 
 const BillList = () => {
@@ -10,7 +9,6 @@ const BillList = () => {
   
   return (
     <div>
-      <UserBills />
       <div>
         <h2>Bills</h2>
           {

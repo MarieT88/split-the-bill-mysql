@@ -22,5 +22,22 @@ const Split = conn.define('split', {
 
 });
 
+Split.beforeCreate(async (split, options) => {
+  const Bill = conn.models.bill;
+  const bill = await Bill.findByPk(split.billId);
+  if (bill.isPaid) {
+    throw new Error('Cannot add contribution to a paid bill');
+  }
+});
+
+Split.afterCreate(async (split, options) => {
+  const Bill = conn.models.bill;
+  const bill = await Bill.findByPk(split.billId);
+  const totalAmount = await Split.sum('amount', { where: { billId: bill.id } });
+  if (totalAmount === bill.amount) {
+    await bill.update({ isPaid: true });
+  }
+});
+
 
 module.exports = Split;

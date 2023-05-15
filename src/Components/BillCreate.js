@@ -4,7 +4,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBill } from '../store';
 import { useNavigate } from 'react-router-dom';
-import UserBills from './UserBills';
 
 
 const BillCreate = ()=> {
@@ -47,7 +46,6 @@ const BillCreate = ()=> {
   return (
     
     <div>
-      <UserBills />
       <h2>Create Bill</h2>
       <form onSubmit={ create }>
         <input 

@@ -4,10 +4,8 @@ import { Link, Routes, Route } from 'react-router-dom';
 import Logout from './Logout';
 import Login from './Login';
 import UserProfile from "./UserProfile";
-import UserBills from "./UserBills";
 import BillCreate from './BillCreate';
 import BillList from "./BillList";
-import QuickSplit from "./QuickSplit";
 import Split from "./Split";
 import BillDetails from "./BillDetails";
 import BillSplit from'./BillSplit';
@@ -48,8 +46,10 @@ const App = ()=> {
           <div>
             <nav>
               <Link to="/profile">Profile</Link>
-              <Link to="/bills">Bills</Link>
-              <Link to="/quicksplit">Quick Split</Link>
+              <Link to="/newbill">New Bill</Link>
+              <Link to="/mybills">My Bills</Link>
+              <Link to="/splits">Shared Bills</Link>
+              <Link to="/billsplit">Split A Bill</Link>
             </nav>
           </div>
         )
@@ -59,11 +59,9 @@ const App = ()=> {
           <div>
             <Routes>
              <Route path="/profile" element={<UserProfile />} />
-             <Route path="/bills/*" element={<UserBills />} />
              <Route path="/newbill" element={<BillCreate />} />
              <Route path="/mybills" element={<BillList />} />
              <Route path="/bills/:id" element={<BillDetails />} />
-             <Route path="/quicksplit" element={<QuickSplit />} />
              <Route path="/splits" element={<Split />} />
              <Route path="/BillSplit" element={<BillSplit />} />
             </Routes>

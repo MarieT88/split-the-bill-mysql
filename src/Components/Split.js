@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSplits, fetchUsers, fetchBills } from '../store';
-import UserBills from './UserBills';
+
 
 function Split() {
+  
   const splits = useSelector(state => state.splits);
   const bills = useSelector(state => state.bills);
   const users = useSelector(state => state.users);
@@ -18,7 +19,6 @@ function Split() {
   if (!splits || !Array.isArray(splits)) {
     return (
       <div>
-        <UserBills />
         <div>No splits to display.</div>
       </div>
     );
@@ -52,7 +52,6 @@ function Split() {
   if (!groupedSplits || !Array.isArray(groupedSplits)) {
     return (
       <div>
-        <UserBills />
         <div>No splits to display.</div>
       </div>
     );
@@ -68,7 +67,6 @@ function Split() {
 
   return (
   <div>
-    <UserBills />
     <ul>
       {groupedSplits.map(group => {
         const totalAmountContributed = group.userIds.reduce(
