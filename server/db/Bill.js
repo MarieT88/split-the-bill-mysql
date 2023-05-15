@@ -24,6 +24,16 @@ const Bill = conn.define('bill', {
     type: BOOLEAN,
     defaultValue: false,
   },
+    paidAmount: {
+    type: FLOAT,
+    defaultValue: 0,
+  },
+  }, {
+    getterMethods: {
+      remainingAmount() {
+        return this.amount - this.paidAmount;
+      },
+    },
 });
    
 

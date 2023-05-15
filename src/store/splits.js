@@ -6,7 +6,7 @@ const splits = (state = [], action) => {
     return action.splits;
   }
   if (action.type === "CREATE_SPLIT") {
-    state = [...state, action.split];
+    return [...state, action.split];
   }
   if (action.type === "UPDATE_SPLIT") {
     return state.map((split) =>

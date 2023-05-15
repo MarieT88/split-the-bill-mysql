@@ -5,7 +5,7 @@ const bills = (state = [], action) => {
     return action.bills;
   }
   if (action.type === "CREATE_BILL") {
-    state = [...state, action.bill];
+    return [...state, action.bill];
   }
   if(action.type === 'DELETE_BILL'){
     return state.filter(bill => bill.id !== action.bill.id);
@@ -13,7 +13,10 @@ const bills = (state = [], action) => {
   if (action.type === "UPDATE_BILL") {
     return state.map((bill) => {
       if (bill.id === action.bill.id) {
-        return action.bill;
+        return {
+          ...bill,
+          contributedUserIds: action.bill.contributedUserIds,
+        };
       } else {
         return bill;
       }

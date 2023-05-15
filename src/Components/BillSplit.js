@@ -10,6 +10,7 @@ const BillSplit = ()=> {
   const { bills, users } = useSelector( state => state );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const [ billId, setBillId ] = useState('');
   const [ userId, setUserId ] = useState('');
@@ -18,13 +19,6 @@ const BillSplit = ()=> {
   const [numSplits, setNumSplits] = useState(0);
   const [selectedBill, setSelectedBill] = useState(null);
   const [splits, setSplits] = useState([]); 
-  
-  
-  /*const create = async(ev) => {
-    ev.preventDefault();
-    await dispatch(createSplit({  billId, userId, amount }));
-    setAmount('');
-  };*/  
   
     const create = async(ev) => {
     ev.preventDefault();
@@ -37,14 +31,16 @@ const BillSplit = ()=> {
       }
       return acc;
     }, 0);
-    if (currentAmount + parseFloat(amount) > totalAmount) {
+    if (currentAmount + parseFloat(amount) >= totalAmount) {
       alert('Bill is paid!');
       return;
     }
-    if (currentAmount > totalAmount) {
+    if (currentAmount >= totalAmount) {
       alert('Bill is already paid!');
       return;
     }
+    
+
     
     // Check if the user is already included in the splits for the selected bill
     const existingSplit = splits.find(split => split.billId === billId && split.userId === userId);
@@ -63,8 +59,9 @@ const BillSplit = ()=> {
     // Clear the form inputs
     setUserId('');
     setAmount('');
+    navigate('/billsplit');
   };  
-  
+   
   
   const handleSplit = (calcAmount, numSplits) => {
     setCalcAmount(parseFloat(calcAmount).toFixed(2));
@@ -78,32 +75,50 @@ const BillSplit = ()=> {
     setBillId(id);
   };
   
+  // for drop down menu to calculate remaining balance
+  const calculatePaidAmount = (billId) => {
+  const paidAmount = splits.reduce((acc, split) => {
+    if (split.billId === billId) {
+      return acc + parseFloat(split.amount);
+    }
+    return acc;
+  }, 0);
+  return paidAmount.toFixed(2);
+};
+  
    return (
     <div>
       <div>
       <form onSubmit={ create }>
-        <div>
-          <label>Select Bill: </label>
-            <select value= { billId } onChange={ handleBillChange } >
-              <option value=''>Select Bill</option>       
-                { 
-                  bills.map( bill => {
-                    return (
-                      <option value={ bill.id } key={bill.id}>{bill.name}</option>
-                    );
-                  })
-                }
+      
+
+<div>
+            <label>Select Bill: </label>
+            <select value={billId} onChange={handleBillChange}>
+              <option value="">Select Bill</option>
+              {bills.map((bill) => (
+                <option value={bill.id} key={bill.id} disabled={bill.isPaid}>
+                  {bill.name} - Remaining: {bill.remainingAmount}
+                    <>{'\n'}</>
+                    Amount: {bill.amount}, Paid: {bill.paidAmount}
+                </option>
+              ))}
             </select>
-        </div>
-        { selectedBill &&
-          <div>
-            <p>Bill: { selectedBill.name }</p>
-            <p>Amount: { selectedBill.amount }</p>
-            <p>Due Date: { selectedBill.dueDate }</p>
-            {selectedBill.note && <p>Note: { selectedBill.note }</p>}
           </div>
-        }
-        <div>
+          {selectedBill && (
+            <div>
+              <p>Bill: {selectedBill.name}</p>
+              <p>Amount: {selectedBill.amount}</p>
+              <p>Due Date: {selectedBill.dueDate}</p>
+              {selectedBill.note && <p>Note: {selectedBill.note}</p>}
+            </div>
+          )}
+          <div>
+
+
+
+
+
           <label>Select User: </label>
             <select value= { userId } onChange={ ev => setUserId(ev.target.value)}>
               <option value=''>Select User</option>       
@@ -134,9 +149,16 @@ const BillSplit = ()=> {
       }
     </div>
     </div>
-  );
+  )};
+
   
-  /*return (
+    
+  /*const create = async(ev) => {
+    ev.preventDefault();
+    await dispatch(createSplit({  billId, userId, amount }));
+    setAmount('');
+  };  
+  return (
     <div>
       <div>
       <form onSubmit={ create }>
@@ -184,8 +206,8 @@ const BillSplit = ()=> {
 }
     </div>
     </div>
-  );*/
-};
+  );
+};*/
 
 export default BillSplit;
 

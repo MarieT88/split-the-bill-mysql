@@ -22,6 +22,7 @@ const Split = conn.define('split', {
 
 });
 
+
 Split.beforeCreate(async (split, options) => {
   const Bill = conn.models.bill;
   const bill = await Bill.findByPk(split.billId);

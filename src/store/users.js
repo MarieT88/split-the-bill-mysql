@@ -5,7 +5,7 @@ const users = (state = [], action) => {
     return action.users;
   }
   if (action.type === "CREATE_USER") {
-    state = [...state, action.user];
+    return [...state, action.user];
   }
   if(action.type === 'DELETE_USER'){
     return state.filter(user => user.id !== action.user.id);
