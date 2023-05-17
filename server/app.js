@@ -13,4 +13,10 @@ app.use('/api/bills', require('./api/bills'));
 app.use('/api/users', require('./api/users'));
 app.use('/api/splits', require('./api/splits'));
 
+app.use((err, req, res, next)=> {
+  console.log(err);
+  res.status(500).send({ error: err });
+});
+
+
 module.exports = app;

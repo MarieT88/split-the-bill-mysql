@@ -4,11 +4,11 @@ function SplitCalc({ onSubmit }) {
     
   const [calcAmount, setCalcAmount] = useState('');
   const [numSplits, setNumSplits] = useState('');
-
+  const [tipPercentage, setTipPercentage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(calcAmount, numSplits);
+    onSubmit(calcAmount, numSplits, tipPercentage);
   };
 
   return (
@@ -29,6 +29,15 @@ function SplitCalc({ onSubmit }) {
           id="numSplits"
           value={numSplits}
           onChange={(event) => setNumSplits(event.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="tipPercentage">Tip Percentage:</label>
+        <input
+          type="number"
+          id="tipPercentage"
+          value={tipPercentage}
+          onChange={(event) => setTipPercentage(event.target.value)}
         />
       </div>
       <button type="submit">Split</button>

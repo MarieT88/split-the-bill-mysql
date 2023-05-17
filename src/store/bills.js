@@ -10,12 +10,12 @@ const bills = (state = [], action) => {
   if(action.type === 'DELETE_BILL'){
     return state.filter(bill => bill.id !== action.bill.id);
   }
-  if (action.type === "UPDATE_BILL") {
+  if (action.type === 'UPDATE_BILL') {
     return state.map((bill) => {
       if (bill.id === action.bill.id) {
         return {
           ...bill,
-          contributedUserIds: action.bill.contributedUserIds,
+          contributions: action.bill.contributions,
         };
       } else {
         return bill;
@@ -28,7 +28,7 @@ const bills = (state = [], action) => {
 
 export const fetchBills = () => {
   return async (dispatch) => {
-    const response = await axios.get("/api/bills");
+    const response = await axios.get("/api/bills"); //?include=splits
     dispatch({ type: "SET_BILLS", bills: response.data });
   };
 };
@@ -49,6 +49,7 @@ export const createBill = (bill) => {
 
 export const deleteBill = (bill)=> {
   return async(dispatch)=> {
+    console.log(bill);
     await axios.delete(`/api/bills/${bill.id}`);
     dispatch({ type: 'DELETE_BILL', bill});
   };

@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-
+import { useSelector, useDispatch  } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { deleteBill } from '../store';
 
 const BillList = () => {
   
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { bills } = useSelector( state => state );
-  
+
+  const destroy = (bill) => {
+    dispatch(deleteBill(bill));
+    navigate('/mybills');
+  };
+
   return (
     <div>
       <div>
@@ -17,6 +24,7 @@ const BillList = () => {
                 <ul key={ bill.id }>
                   <li>
                    <Link to={`/bills/${bill.id}`}>{bill.name}</Link>
+                   <button onClick={ ()=> destroy(bill)}>x</button>
                   </li>
                 </ul>
               );  
@@ -26,5 +34,6 @@ const BillList = () => {
     </div>
   );
 };
+
 
 export default BillList;

@@ -23,3 +23,15 @@ app.post('/', async (req, res, next) => {
     next(ex);
   }
 });
+
+
+app.delete('/:id', async(req, res, next) => {
+  try{
+    const split = await Split.findByPk(req.params.id);
+    await split.destroy();
+    res.send(204);
+  }
+  catch(ex){
+    next(ex);
+  }
+});

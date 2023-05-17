@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, FLOAT, ENUM, DATEONLY } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, FLOAT, ENUM, DATEONLY, ARRAY } = conn.Sequelize;
 
 
 const Bill = conn.define('bill', {
@@ -9,10 +9,12 @@ const Bill = conn.define('bill', {
     defaultValue: UUIDV4
   },
   name: {
-    type: STRING
+    type: STRING,
+    allowNull: false,
   },
   amount: {
-    type: FLOAT
+    type: FLOAT,
+    allowNull: false,
   },
   dueDate: {
     type: DATEONLY,
@@ -20,20 +22,25 @@ const Bill = conn.define('bill', {
   note: {
     type: TEXT
   },
-  	isPaid: {
+  isPaid: {
     type: BOOLEAN,
     defaultValue: false,
   },
-    paidAmount: {
+  paidAmount: {
     type: FLOAT,
     defaultValue: 0,
   },
-  }, {
-    getterMethods: {
-      remainingAmount() {
-        return this.amount - this.paidAmount;
-      },
+  remainingAmount: {
+    type: FLOAT,
+    defaultValue: this.amount,
+    get() {
+      return this.getDataValue('remainingAmount');
     },
+  },
+  contributedUserIds: {
+    type: ARRAY(UUID),
+    defaultValue: [],
+  },
 });
    
 

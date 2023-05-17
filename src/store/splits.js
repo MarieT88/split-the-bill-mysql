@@ -13,14 +13,9 @@ const splits = (state = [], action) => {
       split.id === action.split.id ? action.split : split
     );
   }
-  /*
-  if (action.type === "UPDATE_SPLIT") {
-  const { split } = action;
-  if (!split) return state;
-  return state.map((s) =>
-    s.id === split.id ? split : s
-  );
-}*/
+    if(action.type === 'DELETE_SPLIT'){
+    return state.filter(split => split.id !== action.split.id);
+  }
   return state;
 };
 
@@ -39,19 +34,19 @@ export const createSplit = (split) => {
   };
 };
 
-/*export const updateSplit = (id, split) => {
+export const updateSplit = (id, split) => {
   return async (dispatch) => {
     const response = await axios.put(`/api/splits/${id}`, split);
     dispatch({ type: "UPDATE_SPLIT", split: response.data });
   };
-};/
+};
 
-export const updateSplit = (billId, splitId, split) => {
-  return async (dispatch) => {
-    const response = await axios.put(`/api/bills/${billId}/splits/${splitId}`, split);
-    dispatch({ type: "UPDATE_SPLIT", split: response.data });
+export const deleteSplit = (split)=> {
+  return async(dispatch)=> {
+    await axios.delete(`/api/splits/${split.id}`);
+    dispatch({ type: 'DELETE_SPLIT', split});
   };
-};*/
+};
 
 
 export default splits;

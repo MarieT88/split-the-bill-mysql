@@ -7,6 +7,7 @@ const { users, bills } = require('./Data');
 // relationships between the models
 Split.belongsTo(User);
 Split.belongsTo(Bill);
+//Bill.hasMany(Split, { onDelete: 'CASCADE' });
 
 const syncAndSeed = async()=> {
   

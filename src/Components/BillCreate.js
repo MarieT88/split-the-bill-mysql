@@ -30,7 +30,7 @@ const BillCreate = ()=> {
       setDueDate(null);
       setNote('');
       setErrors([]);
-      navigate('/bills');
+      navigate('/mybills');
     }
     catch(ex){
       if (ex.response && ex.response.data && ex.response.data.error && ex.response.data.error.errors) {
@@ -46,7 +46,7 @@ const BillCreate = ()=> {
   return (
     
     <div>
-      <h2>Create Bill</h2>
+      <h2>Create New Bill</h2>
       <form onSubmit={ create }>
         <input 
           type="text" 

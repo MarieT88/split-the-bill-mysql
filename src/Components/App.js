@@ -8,7 +8,7 @@ import BillCreate from './BillCreate';
 import BillList from "./BillList";
 import Split from "./Split";
 import BillDetails from "./BillDetails";
-import BillSplit from'./BillSplit';
+//import BillSplit from'./BillSplit';
 import { loginWithToken, fetchUsers, fetchSplits, fetchBills } from '../store';
 
 
@@ -49,7 +49,6 @@ const App = ()=> {
               <Link to="/newbill">New Bill</Link>
               <Link to="/mybills">My Bills</Link>
               <Link to="/splits">Shared Bills</Link>
-              <Link to="/billsplit">Split A Bill</Link>
             </nav>
           </div>
         )
@@ -63,7 +62,6 @@ const App = ()=> {
              <Route path="/mybills" element={<BillList />} />
              <Route path="/bills/:id" element={<BillDetails />} />
              <Route path="/splits" element={<Split />} />
-             <Route path="/BillSplit" element={<BillSplit />} />
             </Routes>
           </div>
         )
