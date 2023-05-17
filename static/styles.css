@@ -1,6 +1,9 @@
+/*Split the Bill*/
+
 body {
   font-family: verdana;
   text-align: center;
+  padding: 2rem;
 }
 
 form {
@@ -14,12 +17,57 @@ form > * {
   margin: 1rem;
 }
 
-nav {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 1.5rem;
-}
 
 ul {
   list-style: none;
+}
+
+
+/* NAVBAR */
+nav {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+nav > a {
+  color: black;
+  font-weight: bold;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+nav > a:hover {
+  text-shadow: 2px 2px 4px #00cc00;
+}
+
+a {
+  color: black;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+a:hover {
+  text-shadow: 2px 2px 4px #00cc00;
+}
+
+
+.jumbotron {
+  background-color: #00cc00; /* green */
+  color: #ffffff;
+  padding: 50px 25px;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-evenly ;
+}
+.rows {
+  display: flex;
+  justify-content: space-evenly ;
+}
+
+h2 {
+  margin-bottom: 2rem;
 }

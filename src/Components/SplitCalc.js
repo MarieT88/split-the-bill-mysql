@@ -13,33 +13,30 @@ function SplitCalc({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="amount">Amount:</label>
         <input
           type="number"
           id="amount"
+          placeholder="Amount"
+          name="Amount" 
           value={calcAmount}
           onChange={(event) => setCalcAmount(event.target.value)}
         />
-      </div>
-      <div>
-        <label htmlFor="numSplits">Number of Splits:</label>
         <input
           type="number"
           id="numSplits"
+          placeholder="Number of Splits"
+          name="Number of sPLITS" 
           value={numSplits}
           onChange={(event) => setNumSplits(event.target.value)}
         />
-      </div>
-      <div>
-        <label htmlFor="tipPercentage">Tip Percentage:</label>
         <input
           type="number"
           id="tipPercentage"
+          placeholder="Tip Percentage"
+          name="Tip Percentage" 
           value={tipPercentage}
           onChange={(event) => setTipPercentage(event.target.value)}
         />
-      </div>
       <button type="submit">Split</button>
     </form>
   );

@@ -4,9 +4,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBill } from '../store';
 import { useNavigate } from 'react-router-dom';
+import QuickSplitCalc from './QuickSplitCalc';
 
 
 const BillCreate = ()=> {
+  
   const { auth } = useSelector(state => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,7 +46,7 @@ const BillCreate = ()=> {
   };  
 
   return (
-    
+  <div className='columns'> 
     <div>
       <h2>Create New Bill</h2>
       <form onSubmit={ create }>
@@ -87,6 +89,10 @@ const BillCreate = ()=> {
           </ul>
       </form>
     </div>
+    <div>
+      <QuickSplitCalc />
+    </div>
+  </div>
   );
 };
 

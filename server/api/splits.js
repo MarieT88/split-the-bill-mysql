@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const { Split } = require('../db');
+const { Split, Bill } = require('../db');
 
 // route: /api/splits
 
@@ -24,7 +24,6 @@ app.post('/', async (req, res, next) => {
   }
 });
 
-
 app.delete('/:id', async(req, res, next) => {
   try{
     const split = await Split.findByPk(req.params.id);
@@ -35,3 +34,31 @@ app.delete('/:id', async(req, res, next) => {
     next(ex);
   }
 });
+
+
+/*
+app.post('/', async (req, res, next) => {
+  try {
+    const { billId, userId, amount } = req.body;
+    const split = await Split.create({ billId, userId, amount });
+
+    // Update the corresponding bill
+    const bill = await Bill.findByPk(billId);
+    if (bill) {
+      const updatedContributedUserIds = [...bill.contributedUserIds, userId];
+      const updatedBill = { ...bill, contributedUserIds: updatedContributedUserIds };
+      
+      // Check if the remaining amount is fully covered
+      if (updatedContributedUserIds.length === bill.contributedUserIds.length + 1) {
+        updatedBill.isPaid = true;
+        updatedBill.paidAmount = bill.amount;
+      }
+
+      await bill.update(updatedBill);
+    }
+
+    res.status(201).send(split);
+  } catch (ex) {
+    next(ex);
+  }
+});*/

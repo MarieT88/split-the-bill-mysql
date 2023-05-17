@@ -18,18 +18,22 @@ const BillList = () => {
     <div>
       <div>
         <h2>Bills</h2>
+        <table>
+          <tbody>
           {
             bills.map( bill => {
               return (
-                <ul key={ bill.id }>
-                  <li>
+                <tr key={ bill.id } className="align-items-center">
+                  <td>
                    <Link to={`/bills/${bill.id}`}>{bill.name}</Link>
-                   <button onClick={ ()=> destroy(bill)}>x</button>
-                  </li>
-                </ul>
+                   <button className= "btn btn-outline-dark btn-sm" onClick={ ()=> destroy(bill)}>x</button>
+                  </td>
+                </tr>
               );  
             })
           }
+          </tbody>
+        </table>
       </div>
     </div>
   );

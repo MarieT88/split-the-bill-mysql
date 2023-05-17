@@ -7,8 +7,8 @@ import UserProfile from "./UserProfile";
 import BillCreate from './BillCreate';
 import BillList from "./BillList";
 import Split from "./Split";
-import BillDetails from "./BillDetails";
-//import BillSplit from'./BillSplit';
+import BillSplit from "./BillSplit";
+import Home from "./Home";
 import { loginWithToken, fetchUsers, fetchSplits, fetchBills } from '../store';
 
 
@@ -40,15 +40,20 @@ const App = ()=> {
 
   return (
     <div>
-      <h1>Split the Bill</h1>
+      <div className="jumbotron text-center">
+        <h1>Split the Bill</h1>
+      </div>
       {
         !!auth.id  && (
           <div>
-            <nav>
-              <Link to="/profile">Profile</Link>
-              <Link to="/newbill">New Bill</Link>
-              <Link to="/mybills">My Bills</Link>
-              <Link to="/splits">Shared Bills</Link>
+            <nav className="navbar navbar-inverse">
+              <div className="navbar-header">
+                <a className="navbar-brand">SplitTheBill</a>
+              </div>
+              <Link to="/profile" className="nav navbar-nav">Profile</Link>
+              <Link to="/newbill" className="nav navbar-nav">New Bill</Link>
+              <Link to="/mybills" className="nav navbar-nav">My Bills</Link>
+              <Link to="/splits" className="nav navbar-nav">Shared Bills</Link>
             </nav>
           </div>
         )
@@ -60,8 +65,9 @@ const App = ()=> {
              <Route path="/profile" element={<UserProfile />} />
              <Route path="/newbill" element={<BillCreate />} />
              <Route path="/mybills" element={<BillList />} />
-             <Route path="/bills/:id" element={<BillDetails />} />
+             <Route path="/bills/:id" element={<BillSplit />} />
              <Route path="/splits" element={<Split />} />
+             <Route path="/" element={<Home/>} />
             </Routes>
           </div>
         )

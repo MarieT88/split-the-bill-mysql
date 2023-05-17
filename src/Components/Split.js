@@ -74,10 +74,12 @@ function Split() {
         );
         return (
           <li key={group.billId}>
-            <h5>{group.name}</h5>
+            <h4>{group.name}</h4>
             <div>
-              Total: {group.amount} | Note: {group.note} | Due Date:{' '}
-              {group.dueDate}
+              <p>Total: {group.amount} </p> 
+              <p>Note: {group.note}</p>
+              <p>Due Date:{' '} {group.dueDate}</p>
+              <p>
               {group.isPaid ? (
                 <span style={{ color: 'green' }}> Paid</span>
               ) : checkBillPaid(group) ? (
@@ -88,16 +90,20 @@ function Split() {
                   Unpaid - ${group.amount - totalAmountContributed.toFixed(2)} remaining
                 </span>
               )}
+              </p>
+              <p>
+                <h6>Split Between:</h6>
+                  <ul>
+                    {group.userIds.map(user => (
+                      <li key={user.userId}>
+                        {users.find(u => u.id === user.userId)?.name} - $
+                        {user.amount}
+                      </li>
+                    ))}
+                  </ul>
+              </p>
+              <hr/>
             </div>
-            <h5>Split Between:</h5>
-            <ul>
-              {group.userIds.map(user => (
-                <li key={user.userId}>
-                  {users.find(u => u.id === user.userId)?.name} - $
-                  {user.amount}
-                </li>
-              ))}
-            </ul>
           </li>
         );
       })}

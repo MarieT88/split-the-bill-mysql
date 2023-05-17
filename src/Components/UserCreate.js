@@ -31,7 +31,7 @@ const UserCreate = ()=> {
       await dispatch(register(credentials));
       setErrors([]);
       dispatch(attemptLogin(credentials));
-      navigate('/profile');
+      navigate('/');
     }
     catch(ex){
       setErrors(ex.response.data.error.errors); 
