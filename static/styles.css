@@ -2,7 +2,6 @@
 
 body {
   font-family: verdana;
-  text-align: center;
   padding: 2rem;
 }
 
@@ -13,10 +12,6 @@ form {
   margin-right: 4rem;
 }
 
-form > * {
-  margin: 1rem;
-}
-
 
 ul {
   list-style: none;
@@ -25,15 +20,16 @@ ul {
 
 /* NAVBAR */
 nav {
-  font-size: 1rem;
+  font-size: 1.25rem;
   display: flex;
-  justify-content: space-around;
+  /*justify-content: space-around;*/
   margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 nav > a {
   color: black;
-  font-weight: bold;
   padding: 0.5rem;
   text-decoration: none;
 }
@@ -42,20 +38,19 @@ nav > a:hover {
   text-shadow: 2px 2px 4px #00cc00;
 }
 
-a {
+td > a {
   color: black;
   padding: 0.5rem;
   text-decoration: none;
 }
 
-a:hover {
+td > a:hover {
   text-shadow: 2px 2px 4px #00cc00;
 }
 
 
 .jumbotron {
   background-color: #00cc00; /* green */
-  color: #ffffff;
   padding: 50px 25px;
 }
 

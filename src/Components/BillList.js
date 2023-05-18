@@ -16,9 +16,17 @@ const BillList = () => {
 
   return (
     <div>
-      <div>
+      <div className="container">
         <h2>Bills</h2>
-        <table>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Bill</th>
+              <th>Amount</th>
+              <th>Dute Date</th>
+              <th>Delete Bill</th>
+            </tr>
+          </thead>
           <tbody>
           {
             bills.map( bill => {
@@ -26,6 +34,10 @@ const BillList = () => {
                 <tr key={ bill.id } className="align-items-center">
                   <td>
                    <Link to={`/bills/${bill.id}`}>{bill.name}</Link>
+                  </td>
+                  <td>{bill.amount}</td>
+                  <td>{bill.dueDate}</td>
+                  <td>
                    <button className= "btn btn-outline-dark btn-sm" onClick={ ()=> destroy(bill)}>x</button>
                   </td>
                 </tr>

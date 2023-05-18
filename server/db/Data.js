@@ -30,21 +30,34 @@ const users = [
       email: 'LB@gmail.com', 
 	},
 	{ 
-      username: 'Moe', 
+      username: 'Jane', 
       password: '123', 
-      firstName: 'Moe', 
-      lastName: 'Shom', 
-      email: 'MS@gmail.com',
-	}
+      firstName: 'Jane', 
+      lastName: 'Doe', 
+      email: 'JD@gmail.com',
+	},
+	{ 
+      username: 'Sugar', 
+      password: '123', 
+      firstName: 'Sugar', 
+      lastName: 'Daddy', 
+      email: 'SD@gmail.com',
+	},
+	{ 
+      username: 'SpiderMan', 
+      password: '123', 
+      firstName: 'Peter', 
+      lastName: 'Parker', 
+      email: 'PeteP@gmail.com',
+	},
 ];
 
 
 const bills = [
     {  
 	    name: 'Rent',
-	    amount: 500.00,
+	    amount: 2500.00,
 	    dueDate: '2023-07-02',
-	    note: 'Going up to 550 next month',
     },
     {
 	    name: 'Electric',
@@ -53,14 +66,14 @@ const bills = [
     },
     {
 	    name: 'Water',
- 	    amount: 54.62,
+ 	    amount: 80.00,
 	    dueDate: '2023-07-13',
     },
     {
-		name: 'Boat',
-		amount: 500.00,
+		name: 'Gym',
+		amount: 50.00,
 		dueDate: '2023-07-02',
-		note: 'Going up to 550 next month',
+		note: 'Going up to $55 next month',
 	},
 	{
 	  	name: 'Car',
@@ -69,11 +82,11 @@ const bills = [
 	},
 	{
 		name: 'Phone',
-		amount: 54.62,
+		amount: 70.00,
 		dueDate: '2023-07-13',
 	},
     {
-        name: 'Girls Vegas Weekend',
+        name: 'Bachelorette Weekend',
         amount: 3500.00,
         dueDate: '2023-09-02',
         note: 'Not including flights',

@@ -74,8 +74,8 @@ function Split() {
         );
         return (
           <li key={group.billId}>
-            <h4>{group.name}</h4>
             <div>
+            <h4>{group.name}</h4>
               <p>Total: {group.amount} </p> 
               <p>Note: {group.note}</p>
               <p>Due Date:{' '} {group.dueDate}</p>
@@ -91,7 +91,8 @@ function Split() {
                 </span>
               )}
               </p>
-              <p>
+              </div>
+              <div>
                 <h6>Split Between:</h6>
                   <ul>
                     {group.userIds.map(user => (
@@ -101,9 +102,8 @@ function Split() {
                       </li>
                     ))}
                   </ul>
-              </p>
+              </div>
               <hr/>
-            </div>
           </li>
         );
       })}

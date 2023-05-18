@@ -26,22 +26,30 @@ const Login = ()=> {
   
   return (
     <div>
-      <div>
+      <div className="container mt-3">
         <h2>Login</h2>
         <form onSubmit={ login }>
+          <div className="row">
+          <div className="col">
           <input
             placeholder='username'
             value = { credentials.username }
             name = 'username'
             onChange = { onChange }
             />
+            </div>
+            <div className="col">
           <input
             placeholder='password'
             name = 'password'
             value={ credentials.password }
             onChange = { onChange }
           />
+          </div>
+          <div className="col">
           <button>Login</button>
+          </div>
+          </div>
         </form>
       </div>
       <div>

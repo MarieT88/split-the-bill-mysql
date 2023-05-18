@@ -40,7 +40,7 @@ const App = ()=> {
 
   return (
     <div>
-      <div className="jumbotron text-center">
+      <div>
         <h1>Split the Bill</h1>
       </div>
       {
@@ -48,12 +48,12 @@ const App = ()=> {
           <div>
             <nav className="navbar navbar-inverse">
               <div className="navbar-header">
-                <a className="navbar-brand">SplitTheBill</a>
+                <h2 className="navbar-brand">SplitTheBill</h2>
               </div>
-              <Link to="/profile" className="nav navbar-nav">Profile</Link>
-              <Link to="/newbill" className="nav navbar-nav">New Bill</Link>
-              <Link to="/mybills" className="nav navbar-nav">My Bills</Link>
-              <Link to="/splits" className="nav navbar-nav">Shared Bills</Link>
+                <Link to="/newbill" className="nav navbar-nav">New Bill</Link>
+                <Link to="/mybills" className="nav navbar-nav">My Bills</Link>
+                <Link to="/splits" className="nav navbar-nav">Shared Bills</Link>
+                <Link to="/profile" className="nav navbar-nav">Profile</Link>
             </nav>
           </div>
         )
