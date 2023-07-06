@@ -1,18 +1,20 @@
 const conn = require('./conn');
-const { INTEGER, UUID, UUIDV4, BOOLEAN, FLOAT } = conn.Sequelize;
+//const { INTEGER, UUID, UUIDV4, BOOLEAN, FLOAT } = conn.Sequelize;
+const { Sequelize, DataTypes } = require('sequelize');
+const { UUID, UUIDV4,  BOOLEAN, FLOAT, INTEGER } = DataTypes;
 
 const Split = conn.define('split', {
 	id: {
-		type: UUID,
+		type: UUIDV4,
 		primaryKey: true,
 		defaultValue: UUIDV4,
 	},
 	userId: {
-		type: UUID,
+		type: UUIDV4,
 		allowNull: false,
 	},
 	billId: {
-		type: UUID,
+		type: UUIDV4,
 		allowNull: false,
 	},
 	amount: {
@@ -20,7 +22,9 @@ const Split = conn.define('split', {
     allowNull: true,
   },
 
-});
+},
+{ tableName: 'splits' }
+);
 
 
 Split.beforeCreate(async (split, options) => {
@@ -41,4 +45,4 @@ Split.afterCreate(async (split, options) => {
 });
 
 
-module.exports = Split;
+module.exports = { Split };

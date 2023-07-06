@@ -1,10 +1,11 @@
 const Sequelize = require('sequelize');
-const config = {
-};
 
-if(process.env.QUIET){
-  config.logging = false;
-}
-const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/split_the_bill_db', config);
+const conn = new Sequelize(process.env.DATABASE_URL || 'mysql://root:mt246@!25Q876:@localhost:3306/split-the-bill');
+
+/*const conn = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'mysql',
+  // Other configuration options
+});*/
 
 module.exports = conn;
+

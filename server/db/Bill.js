@@ -1,10 +1,11 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, FLOAT, ENUM, DATEONLY, ARRAY } = conn.Sequelize;
-
+//const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, FLOAT, ENUM, DATEONLY, ARRAY } = conn.Sequelize;
+const { Sequelize, DataTypes } = require('sequelize');
+const { STRING, UUIDV4, TEXT, BOOLEAN, FLOAT, DATEONLY, ARRAY } = DataTypes;
 
 const Bill = conn.define('bill', {
   id: {
-    type: UUID,
+    type: UUIDV4,
     primaryKey: true,
     defaultValue: UUIDV4
   },
@@ -32,16 +33,21 @@ const Bill = conn.define('bill', {
   },
   remainingAmount: {
     type: FLOAT,
-    defaultValue: this.amount,
+    //defaultValue: this.amount,
+    defaultValue: function () {
+      return this.amount;
+    },
     get() {
       return this.getDataValue('remainingAmount');
     },
   },
   contributedUserIds: {
-    type: ARRAY(UUID),
+    type: ARRAY(UUIDV4),
     defaultValue: [],
   },
-});
+},
+{ tableName: 'bills' }
+);
    
 
-module.exports = Bill;
+module.exports = { Bill };

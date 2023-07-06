@@ -1,13 +1,15 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, VIRTUAL } = conn.Sequelize;
+//const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, VIRTUAL } = conn.Sequelize;
+const { Sequelize, DataTypes } = require('sequelize');
+const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, VIRTUAL } = DataTypes;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const JWT = process.env.JWT;
+const JWT = process.env.JWT || 'secret';
 
 //User model
 const User = conn.define('user', {
   id: {
-    type: UUID,
+    type: UUIDV4,
     primaryKey: true,
     defaultValue: UUIDV4
   },
@@ -59,7 +61,9 @@ const User = conn.define('user', {
       return `${this.firstName} ${this.lastName}`;
     }
   }
-});
+},
+{ tableName: 'users' }
+);
 
 
 // hooks 
@@ -105,5 +109,20 @@ User.authenticate = async function({ username, password }){
 };
 
 
-module.exports = User;
+module.exports = { User };
 
+
+
+
+/* Example error handling
+try {
+  // Code that may result in a UniqueConstraintError
+} catch (err) {
+  if (err.name === 'SequelizeUniqueConstraintError' || err.name === 'UniqueConstraintError') {
+    // Handle the UniqueConstraintError here
+    console.error('Duplicate entry found. Please provide a unique value.');
+  } else {
+    // Handle other types of errors
+    console.error('An error occurred:', err);
+  }
+}*/
