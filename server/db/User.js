@@ -9,9 +9,9 @@ const JWT = process.env.JWT || 'secret';
 //User model
 const User = conn.define('user', {
   id: {
-    type: UUIDV4,
+    type: UUID,
     primaryKey: true,
-    defaultValue: UUIDV4
+    defaultValue: UUID
   },
   username: {
     type: STRING,

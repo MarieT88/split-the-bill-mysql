@@ -1,7 +1,7 @@
 {
   "name": "fs-app-template-flex-hooks",
   "version": "1.0.0",
-  "description": "",
+  "description": "- npm i\r - npm run start:dev",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -49,5 +49,16 @@
     "supertest": "^6.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarieT88/split-the-bill-mysql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MarieT88/split-the-bill-mysql/issues"
+  },
+  "homepage": "https://github.com/MarieT88/split-the-bill-mysql#readme"
 }

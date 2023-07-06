@@ -1,13 +1,13 @@
 const conn = require('./conn');
 //const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, FLOAT, ENUM, DATEONLY, ARRAY } = conn.Sequelize;
 const { Sequelize, DataTypes } = require('sequelize');
-const { STRING, UUIDV4, TEXT, BOOLEAN, FLOAT, DATEONLY, ARRAY } = DataTypes;
+const { STRING, UUIDV4, UUID, TEXT, BOOLEAN, FLOAT, DATEONLY, ARRAY } = DataTypes;
 
 const Bill = conn.define('bill', {
   id: {
-    type: UUIDV4,
+    type: UUID,
     primaryKey: true,
-    defaultValue: UUIDV4
+    defaultValue: UUID
   },
   name: {
     type: STRING,
@@ -41,10 +41,10 @@ const Bill = conn.define('bill', {
       return this.getDataValue('remainingAmount');
     },
   },
-  contributedUserIds: {
-    type: ARRAY(UUIDV4),
-    defaultValue: [],
-  },
+  //contributedUserIds: {
+  //  type: ARRAY(UUID),
+  //  defaultValue: [],
+  //},
 },
 { tableName: 'bills' }
 );

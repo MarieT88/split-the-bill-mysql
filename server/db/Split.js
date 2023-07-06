@@ -5,16 +5,16 @@ const { UUID, UUIDV4,  BOOLEAN, FLOAT, INTEGER } = DataTypes;
 
 const Split = conn.define('split', {
 	id: {
-		type: UUIDV4,
+		type: UUID,
 		primaryKey: true,
-		defaultValue: UUIDV4,
+		defaultValue: UUID,
 	},
 	userId: {
-		type: UUIDV4,
+		type: UUID,
 		allowNull: false,
 	},
 	billId: {
-		type: UUIDV4,
+		type: UUID,
 		allowNull: false,
 	},
 	amount: {
