@@ -4,14 +4,15 @@ const { Sequelize, DataTypes } = require('sequelize');
 const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, VIRTUAL } = DataTypes;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const JWT = process.env.JWT || 'secret';
+//const JWT = process.env.JWT || 'secret';
+const JWT = 'secret';
 
 //User model
 const User = conn.define('user', {
   id: {
     type: UUID,
     primaryKey: true,
-    defaultValue: UUID
+    defaultValue: UUIDV4
   },
   username: {
     type: STRING,
@@ -76,7 +77,7 @@ User.addHook('beforeSave', async(user)=> {
 // login, token & authentication methods
 User.findByToken = async function(token){
   try {
-    const { id } = jwt.verify(token, process.env.JWT);
+    const { id } = jwt.verify(token, JWT);
     const user = await this.findByPk(id);
     if(user){
       return user;
@@ -100,6 +101,7 @@ User.authenticate = async function({ username, password }){
       username
     }
   });
+  console.log(user, "user.authenticate***");
   if(user && await bcrypt.compare(password, user.password)){
     return jwt.sign({ id: user.id }, JWT);
   }
@@ -109,7 +111,10 @@ User.authenticate = async function({ username, password }){
 };
 
 
-module.exports = { User };
+module.exports = User;
+
+
+
 
 
 

@@ -6,8 +6,8 @@ const { users, bills } = require('./Data');
 const { DataTypes } = require('sequelize');
 
 // relationships between the models
-//Split.belongsTo(User);
-//Split.belongsTo(Bill);
+Split.belongsTo(User);
+Split.belongsTo(Bill);
 //Bill.hasMany(Split, { onDelete: 'CASCADE' });
 
 const syncAndSeed = async()=> {

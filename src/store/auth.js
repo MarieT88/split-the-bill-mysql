@@ -20,6 +20,7 @@ export const loginWithToken = ()=> {
     const token = window.localStorage.getItem('token');
     if(token){
       try {
+        console.log(token);
         const response = await axios.get('/api/auth', {
           headers: {
             authorization: token

@@ -7,7 +7,7 @@ const Bill = conn.define('bill', {
   id: {
     type: UUID,
     primaryKey: true,
-    defaultValue: UUID
+    defaultValue: UUIDV4
   },
   name: {
     type: STRING,
@@ -50,4 +50,4 @@ const Bill = conn.define('bill', {
 );
    
 
-module.exports = { Bill };
+module.exports = Bill;

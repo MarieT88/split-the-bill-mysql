@@ -7,7 +7,7 @@ const Split = conn.define('split', {
 	id: {
 		type: UUID,
 		primaryKey: true,
-		defaultValue: UUID,
+		defaultValue: UUIDV4,
 	},
 	userId: {
 		type: UUID,
@@ -45,4 +45,4 @@ Split.afterCreate(async (split, options) => {
 });
 
 
-module.exports = { Split };
+module.exports = Split;
