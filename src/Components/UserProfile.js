@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserUpdate from './UserUpdate';
-import { FaUser, FaEnvelope } from 'react-icons/fa';
-
 
 const UserProfile = () => {
   
@@ -13,10 +11,10 @@ const UserProfile = () => {
       <div>
         <h2> {auth.username}'s Profile</h2>
           <h5> 
-            <FaUser /> {auth.name} 
+            {auth.name} 
           </h5>
         <h5> 
-          <FaEnvelope /> {auth.email} 
+            {auth.email} 
         </h5>
       </div>
       <div>
@@ -29,3 +27,23 @@ const UserProfile = () => {
 
 export default UserProfile;
 
+/*
+import { FaUser, FaEnvelope } from 'react-icons/fa';
+return (
+  <div className='columns'>
+    <div>
+      <h2> {auth.username}'s Profile</h2>
+        <h5> 
+          <FaUser /> {auth.name} 
+        </h5>
+      <h5> 
+        <FaEnvelope /> {auth.email} 
+      </h5>
+    </div>
+    <div>
+      <UserUpdate />
+    </div>
+  </div>
+);
+};
+*/
