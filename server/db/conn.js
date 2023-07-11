@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
   // Other configuration options
 });*/
 
-const conn = new Sequelize(process.env.DATABASE_URL || 'mysql://marie:password@localhost:3306/split-the-bill?authPlugins=mysql_native_password', {
+const conn = new Sequelize(process.env.JAWSDB_URL || 'mysql://marie:password@localhost:3306/split-the-bill?authPlugins=mysql_native_password', {
   dialect: 'mysql',
 });
 
