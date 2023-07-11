@@ -4,8 +4,8 @@ const { Sequelize, DataTypes } = require('sequelize');
 const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, VIRTUAL } = DataTypes;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-//const JWT = process.env.JWT || 'secret';
-const JWT = 'secret';
+const JWT = process.env.JWT || 'secret';
+//const JWT = 'secret';
 
 //User model
 const User = conn.define('user', {
